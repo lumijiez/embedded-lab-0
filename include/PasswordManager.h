@@ -1,5 +1,6 @@
 #ifndef PASSWORD_MANAGER_H
 #define PASSWORD_MANAGER_H
+
 #include <Arduino.h>
 #include "LCDDisplay.h"
 #include "KeypadHandler.h"
@@ -13,12 +14,10 @@ private:
   LCDDisplay& lcd;
   KeypadHandler& keypad;
   LEDController& leds;
-  bool needClear;
   bool isPasswordMode;
-
+  
 public:
-  PasswordManager(const char* initialPassword, LCDDisplay& lcd, KeypadHandler&
-  keypad, LEDController& leds);
+  PasswordManager(const char* initialPassword, LCDDisplay& lcd, KeypadHandler& keypad, LEDController& leds);
   void begin();
   void update();
   void resetInput();
@@ -26,7 +25,8 @@ public:
   bool backspace();
   int getInputLength();
   bool checkPassword();
-  void handleNormalMode(char key);
-  void handlePasswordMode(char key);
+  void promptForPassword();
+  void processPassword();
 };
+
 #endif
