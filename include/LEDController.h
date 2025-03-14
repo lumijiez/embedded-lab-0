@@ -4,17 +4,26 @@
 #include <Arduino.h>
 
 class LEDController {
-public:
-  LEDController(int pin = LED_BUILTIN);
-  LEDController(int greenPin, int redPin);
-  void begin();
-  void indicateSuccess();
-  void indicateFailure();
-  void reset();
-  
 private:
-  int greenLedPin;
-  int redLedPin;
+    const int _ledPin;
+    bool _state;
+    bool _isBlinking;
+    unsigned long _previousMillis;
+    unsigned long _blinkInterval;
+    unsigned long _blinkCount;
+    
+public:
+    LEDController(int ledPin);
+    void turnOn();
+    void turnOff();
+    void toggle();
+    bool getState() const;
+    void enableBlinking(bool enable);
+    bool isBlinkingEnabled() const;
+    void setBlinkInterval(unsigned long interval);
+    unsigned long getBlinkInterval() const;
+    unsigned long getBlinkCount() const;
+    void update();
 };
 
 #endif
