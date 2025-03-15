@@ -18,7 +18,7 @@ SystemManager::SystemManager() :
     _button1(BUTTON_1), 
     _button2(BUTTON_2), 
     _button3(BUTTON_3),  
-    _led1(LED_1),     
+    _led1(LED_1, true),     
     _led2(LED_2),    
     _stateManager(INIT_STATE, MIN_STATE, MAX_STATE),  
     _logger(LOG_INTERVAL),
@@ -43,7 +43,7 @@ void SystemManager::loop() {
 void SystemManager::handleButton1() {
     if (_button1.wasPressed()) {
         _led1.toggle();
-        _led2.enableBlinking(_led1.getState());
+        _led2.enableBlinking(!_led1.getState());
     }
 }
 

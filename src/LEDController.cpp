@@ -14,6 +14,20 @@ LEDController::LEDController(int ledPin) :
     digitalWrite(_ledPin, LOW);
 }
 
+LEDController::LEDController(int ledPin, bool state) :
+    _ledPin(ledPin),
+    _state(state),
+    _isBlinking(false),
+    _previousMillis(0),
+    _blinkInterval(BLINK_INTERVAL),
+    _blinkCount(0) {
+    
+    pinMode(_ledPin, OUTPUT);
+
+    if (state) digitalWrite(_ledPin, HIGH);
+    else digitalWrite(_ledPin, LOW);
+}
+
 void LEDController::turnOn() {
     _state = true;
     digitalWrite(_ledPin, HIGH);

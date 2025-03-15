@@ -14,6 +14,7 @@ private:
     
 public:
     LEDController(int ledPin);
+    LEDController(int ledPin, bool state);
     void turnOn();
     void turnOff();
     void toggle();
